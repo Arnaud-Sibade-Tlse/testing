@@ -2,11 +2,17 @@ package main.fr.ut2j.m1ice.ootesting;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
+@RunWith (MockitoJUnitRunner.class)
 public class MyPointTest {
 
 	private MyPoint pointUnderTest;
@@ -93,7 +99,15 @@ public class MyPointTest {
 		assertTrue(scalePoint.getY() == myVarY*2);	
 	}
 	
-
+	@Test
+	public final void setPointTest() {
+		Random bob = Mockito.mock(Random.class);
+		Mockito.when(bob.nextInt()).thenReturn(42);
+		
+		pointUnderTest.setPoint(bob, bob);
+		assertEquals(42, pointUnderTest.getX(),0.001);
+	}
+	
 	@Ignore
 	@Test
 	public final void testHorizontalSymmetry() {

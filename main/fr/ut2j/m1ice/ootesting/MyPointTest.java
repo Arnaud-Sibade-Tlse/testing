@@ -108,10 +108,21 @@ public class MyPointTest {
 		assertEquals(42, pointUnderTest.getX(),0.001);
 	}
 	
-	@Ignore
+	@Test
+	public final void testHorizontalSymmetryFail(){
+		MyPoint nullpoint = null;
+		thrown.expect(IllegalArgumentException.class);
+		pointUnderTest.horizontalSymmetry(nullpoint);
+	}
+
 	@Test
 	public final void testHorizontalSymmetry() {
-		fail("Not yet implemented"); // TODO
+		double myVarX = 1;
+		double myVarY = 1.5;
+		MyPoint symPoint = new MyPoint(myVarX, myVarY);
+		MyPoint newPoint = pointUnderTest.horizontalSymmetry(symPoint);
+		assertEquals(newPoint.getX(),2d * myVarX - pointUnderTest.getX(),0.001);
+		assertEquals(newPoint.getY(),pointUnderTest.getY(),0.001);
 	}
 
 	@Ignore
@@ -126,16 +137,27 @@ public class MyPointTest {
 		fail("Not yet implemented"); // TODO
 	}
 
+	@Test
+	public final void testCentralSymmetryFail(){
+		MyPoint nullpoint = null;
+		thrown.expect(IllegalArgumentException.class);
+		pointUnderTest.centralSymmetry(nullpoint);
+	}
+	
 	@Ignore
 	@Test
 	public final void testCentralSymmetry() {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Ignore
 	@Test
 	public final void testGetMiddlePoint() {
-		fail("Not yet implemented"); // TODO
+		double myVarX = 1.5;
+		double myVarY = 1.5;
+		MyPoint myPoint = new MyPoint(myVarX, myVarY);
+		MyPoint middlePoint = pointUnderTest.getMiddlePoint(myPoint);
+		assertEquals(middlePoint.getX(),(myVarX + pointUnderTest.getX())/2,0.001);
+		assertEquals(middlePoint.getY(),(myVarY + pointUnderTest.getY())/2,0.001);
 	}
 
 	@Ignore

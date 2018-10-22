@@ -31,6 +31,9 @@ Non ce n'est pas etrange, il faut juste tester les methodes utiliser pour verifi
 
 > Q.2b Est-ce que votre code est sûr lorsque toutes les instructions sont couvertes par au moins un test ?
 
+Non le code sera pas sûr parce qu'on pourra toujours tester avec un paramètre non attendu 
+(null ou char à la place de int par exemple), pour palier à cela : tester instanceof pour filtrer le bon cas
+
 > Q.2c Ajoutez le test unitaire suivant et exécutez-le. S’il passe, bien joué. Dans tout les cas cela peut certainement vous aidez à répondre à la question précédente.
 
     @Test public void testCentralSymmetryNULL ( ) {

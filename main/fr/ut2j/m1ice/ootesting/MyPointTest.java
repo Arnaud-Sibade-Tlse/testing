@@ -7,16 +7,19 @@ import java.util.Random;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith (MockitoJUnitRunner.class)
 public class MyPointTest {
 
 	private MyPoint pointUnderTest;
 	
+	@Rule
+    public ExpectedException thrown= ExpectedException.none();
+
 	@Before
 	public void setUp() {
 		pointUnderTest = new MyPoint();
@@ -100,14 +103,15 @@ public class MyPointTest {
 	}
 	
 	@Test
-	public final void setPointTest() {
+	public final void testSetPoint() {
 		Random bob = Mockito.mock(Random.class);
 		Mockito.when(bob.nextInt()).thenReturn(42);
 		
 		pointUnderTest.setPoint(bob, bob);
 		assertEquals(42, pointUnderTest.getX(),0.001);
 	}
-	
+
+	@Ignore
 	@Test
 	public final void testHorizontalSymmetryFail(){
 		MyPoint nullpoint = null;
@@ -125,18 +129,34 @@ public class MyPointTest {
 		assertEquals(newPoint.getY(),pointUnderTest.getY(),0.001);
 	}
 
-	@Ignore
 	@Test
 	public final void testComputeAngle() {
-		fail("Not yet implemented"); // TODO
+		double myVarX = 3;
+		double myVarY = 6;
+		MyPoint anglPoint = new MyPoint(myVarX, myVarY);
+		assertEquals(pointUnderTest.computeAngle(anglPoint),1.063,0.001);
 	}
+
 
 	@Ignore
 	@Test
+	public final void testComputeAngleFail(){
+		MyPoint nullpoint = null;
+		thrown.expect(IllegalArgumentException.class);
+		pointUnderTest.computeAngle(nullpoint);
+	}
+	
+	@Test
 	public final void testRotatePoint() {
-		fail("Not yet implemented"); // TODO
+		double myVarX = 1;
+		double myVarY = 1.5;
+		MyPoint anglPoint = new MyPoint(myVarX, myVarY);
+		MyPoint newPoint = pointUnderTest.rotatePoint(anglPoint,2.0);
+		assertEquals(newPoint.getX(),0.753,0.001);
+		assertEquals(newPoint.getY(),0.337,0.001);
 	}
 
+	@Ignore
 	@Test
 	public final void testCentralSymmetryFail(){
 		MyPoint nullpoint = null;
@@ -144,10 +164,14 @@ public class MyPointTest {
 		pointUnderTest.centralSymmetry(nullpoint);
 	}
 	
-	@Ignore
 	@Test
 	public final void testCentralSymmetry() {
-		fail("Not yet implemented"); // TODO
+		double myVarX = 1;
+		double myVarY = 1.5;
+		MyPoint anglPoint = new MyPoint(myVarX, myVarY);
+		MyPoint newPoint = pointUnderTest.centralSymmetry(anglPoint);
+		assertEquals(newPoint.getX(),0.5,0.001);
+		assertEquals(newPoint.getY(),1.5,0.001);
 	}
 
 	@Test
@@ -163,12 +187,6 @@ public class MyPointTest {
 	@Ignore
 	@Test
 	public final void testTranslateDoubleDouble() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	@Test
-	public final void testSetPoint() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -249,5 +267,4 @@ public class MyPointTest {
 	public final void testFinalize() {
 		fail("Not yet implemented"); // TODO
 	}
-
 }

@@ -208,10 +208,9 @@ public class MyPointTest {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Ignore
 	@Test
 	public final void testGetClass() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(pointUnderTest.getClass(),MyPoint.class);
 	}
 
 	@Ignore
@@ -220,10 +219,9 @@ public class MyPointTest {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Ignore
 	@Test
 	public final void testEquals() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(pointUnderTest,pointUnderTest);
 	}
 
 	@Ignore
@@ -232,10 +230,9 @@ public class MyPointTest {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Ignore
 	@Test
 	public final void testToString() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(pointUnderTest.toString(),"0.5,1.5");
 	}
 
 	@Ignore

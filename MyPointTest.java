@@ -18,7 +18,7 @@ public class MyPointTest {
 	private MyPoint pointUnderTest;
 	
 	@Rule
-    public ExpectedException thrown= ExpectedException.none();
+    public ExpectedException thrown = ExpectedException.none();
 
 	@Before
 	public void setUp() {
@@ -104,10 +104,10 @@ public class MyPointTest {
 	
 	@Test
 	public final void testSetPoint() {
-		Random bob = Mockito.mock(Random.class);
-		Mockito.when(bob.nextInt()).thenReturn(42);
+		Random rdm = Mockito.mock(Random.class);
+		Mockito.when(rdm.nextInt()).thenReturn(42);
 		
-		pointUnderTest.setPoint(bob, bob);
+		pointUnderTest.setPoint(rdm, rdm);
 		assertEquals(42, pointUnderTest.getX(),0.001);
 	}
 
@@ -184,10 +184,16 @@ public class MyPointTest {
 		assertEquals(middlePoint.getY(),(myVarY + pointUnderTest.getY())/2,0.001);
 	}
 
-	@Ignore
+	
 	@Test
 	public final void testTranslateDoubleDouble() {
-		fail("Not yet implemented"); // TODO
+		double oldX = pointUnderTest.getX();
+		double oldY = pointUnderTest.getY();
+		double myVarX = 2;
+		double myVarY = 3;
+		pointUnderTest.translate(myVarX,myVarY);
+		assertEquals(pointUnderTest.getX(),myVarX+oldX,0.001);
+		assertEquals(pointUnderTest.getY(),myVarY+oldY,0.001);
 	}
 
 	@Ignore
